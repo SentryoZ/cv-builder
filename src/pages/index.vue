@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex">
-      <form @submit="saveForm">
+      <form @submit="saveCvData">
         <div class="d-flex flex-column">
           <div class="flex-1-1">
             <a>Padding Top: </a>
@@ -57,6 +57,12 @@ export default {
       cvData: null,
       options: {},
     };
+  },
+  methods: {
+    saveCvData(data) {
+      localStorage.setItem("cv_data", JSON.stringify(data));
+      return data;
+    },
   },
   mounted() {
     let cvData = [];
