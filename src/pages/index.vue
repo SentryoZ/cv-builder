@@ -1,34 +1,30 @@
 <template>
   <div>
     <div class="d-flex">
-      <v-form @submit.prevent="saveCvData">
+      <v-form @submit.prevent="saveCvData(cvData)">
         <div class="d-flex flex-column">
           <div class="flex-1-1">
             <a>Padding Top: </a>
             <v-text-field
-              v-model="options['padding-top']"
-              :style="{ 'padding-top': options['padding-top'] }"
+              v-model="cvData.options['padding-top']"
             />
           </div>
           <div class="flex-1-1">
             <a>Padding Bottom: </a>
             <v-text-field
-              v-model="options['padding-bottom']"
-              :style="{ 'padding-bottom': options['padding-bottom'] }"
+              v-model="cvData.options['padding-bottom']"
             />
           </div>
           <div class="flex-1-1">
             <a>Text Color: </a>
             <v-color-picker
-              v-model="options['text-color']"
-              :style="{ color: options['text-color'] }"
+              v-model="cvData.options['text-color']"
             />
           </div>
           <div class="flex-1-1">
             <a>Primary Color: </a>
             <v-color-picker
-              v-model="options['primary-color']"
-              :style="{ 'background-color': options['primary-color'] }"
+              v-model="cvData.options['primary-color']"
             />
           </div>
           <div class="flex-1-1">
@@ -55,30 +51,23 @@ export default {
   data() {
     return {
       cvData: {},
-      options: {
-        "padding-top": "0px",
-        "padding-bottom": "0px",
-        "text-color": "#000000",
-        "primary-color": "#000000",
-      },
     };
   },
   methods: {
-    saveCvData() {
-      const updatecvData = { ...this.cvData, options: this.options };
-      localStorage.setItem("cv_data", JSON.stringify(this.cvData));
-      return updatecvData;
+    saveCvData(data) {
+      localStorage.setItem("cv_data", JSON.stringify(data));
+      return data
     },
   },
-  mounted() {
+  created() {
     let cvData = [];
     // Get form local storage
     let rawCvData = localStorage.getItem("cv_data");
     if (rawCvData === null || rawCvData === undefined) {
-      cvData = this.saveCvData(initCvData);
+      cvData = initCvData;
       localStorage.setItem("cv_data", JSON.stringify(cvData));
     } else {
-      cvData = this.saveCvData(JSON.parse(rawCvData));
+      cvData = JSON.parse(rawCvData);
     }
 
     // Validate cv data
@@ -90,7 +79,7 @@ export default {
     if (options === null) {
       cvData = this.saveCvData(initCvData);
     }
-    //Todo: validate if have enough option key
+    // //Todo: validate if have enough option key
 
     // Validate cv sections
     let sections = cvData["sections"] ?? null;
@@ -99,6 +88,8 @@ export default {
     }
 
     this.cvData = cvData;
+  },
+  mounted() {
   },
   computed: {
     debugData() {
