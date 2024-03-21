@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex">
-      <form @submit="saveCvData">
+      <v-form @submit.prevent="saveCvData">
         <div class="d-flex flex-column">
           <div class="flex-1-1">
             <a>Padding Top: </a>
@@ -26,7 +26,7 @@
           </div>
           <div class="flex-1-1">
             <a>Primary Color: </a>
-            <v-text-field
+            <v-color-picker
               v-model="options['primary-color']"
               :style="{ 'background-color': options['primary-color'] }"
             />
@@ -35,7 +35,7 @@
             <button type="submit">Save</button>
           </div>
         </div>
-      </form>
+      </v-form>
       <div class="flex-1-1">Input component</div>
       <div class="flex-1-1">
         <pre> {{ debugData }}</pre>
@@ -54,14 +54,20 @@ export default {
   name: "cvBuilder",
   data() {
     return {
-      cvData: null,
-      options: {},
+      cvData: {},
+      options: {
+        "padding-top": "0px",
+        "padding-bottom": "0px",
+        "text-color": "#000000",
+        "primary-color": "#000000",
+      },
     };
   },
   methods: {
-    saveCvData(data) {
-      localStorage.setItem("cv_data", JSON.stringify(data));
-      return data;
+    saveCvData() {
+      const updatecvData = { ...this.cvData, options: this.options };
+      localStorage.setItem("cv_data", JSON.stringify(this.cvData));
+      return updatecvData;
     },
   },
   mounted() {
@@ -98,10 +104,6 @@ export default {
     debugData() {
       return JSON.stringify(this.cvData, null, 2);
     },
-  },
-  saveCvData(data) {
-    localStorage.setItem("cv_data", JSON.stringify(data));
-    return data;
   },
 };
 </script>
