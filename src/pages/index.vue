@@ -10,36 +10,33 @@
   </div>
   <form @submit="saveForm">
     <div class="d-flex flex-column">
+      
       <div class="flex-1-1">
         <a>Padding Top: </a>
-        <input
-          type="text"
+        <v-text-field
           v-model="options['padding-top']"
           :style="{ 'padding-top': options['padding-top'] }"
         />
       </div>
       <div class="flex-1-1">
         <a>Padding Bottom: </a>
-        <input
-          type="text"
+        <v-text-field
           v-model="options['padding-bottom']"
           :style="{ 'padding-bottom': options['padding-bottom'] }"
         />
       </div>
       <div class="flex-1-1">
         <a>Text Color: </a>
-        <input
-          type="text"
+        <v-color-picker
           v-model="options['text-color']"
-          :style="{ color: options['text-color'] }"
+          :style="{ 'color': options['text-color'] }"
         />
       </div>
       <div class="flex-1-1">
         <a>Primary Color: </a>
-        <input
-          type="text"
+        <v-text-field
           v-model="options['primary-color']"
-          :style="{ color: options['primary-color'] }"
+          :style="{ 'background-color': options['primary-color'] }"
         />
       </div>
       <div class="flex-1-1">
@@ -48,6 +45,10 @@
     </div>
   </form>
 </template>
+
+<style>
+
+</style>
 
 <script>
 import initCvData from "@/config/initCvData";
