@@ -1,6 +1,41 @@
 <template>
   <div>
     <div class="d-flex">
+      <form @submit="saveForm">
+        <div class="d-flex flex-column">
+          <div class="flex-1-1">
+            <a>Padding Top: </a>
+            <v-text-field
+              v-model="options['padding-top']"
+              :style="{ 'padding-top': options['padding-top'] }"
+            />
+          </div>
+          <div class="flex-1-1">
+            <a>Padding Bottom: </a>
+            <v-text-field
+              v-model="options['padding-bottom']"
+              :style="{ 'padding-bottom': options['padding-bottom'] }"
+            />
+          </div>
+          <div class="flex-1-1">
+            <a>Text Color: </a>
+            <v-color-picker
+              v-model="options['text-color']"
+              :style="{ color: options['text-color'] }"
+            />
+          </div>
+          <div class="flex-1-1">
+            <a>Primary Color: </a>
+            <v-text-field
+              v-model="options['primary-color']"
+              :style="{ 'background-color': options['primary-color'] }"
+            />
+          </div>
+          <div class="flex-1-1">
+            <button type="submit">Save</button>
+          </div>
+        </div>
+      </form>
       <div class="flex-1-1">Input component</div>
       <div class="flex-1-1">
         <pre> {{ debugData }}</pre>
@@ -8,47 +43,9 @@
       <div class="flex-1-1">Preview component</div>
     </div>
   </div>
-  <form @submit="saveForm">
-    <div class="d-flex flex-column">
-      
-      <div class="flex-1-1">
-        <a>Padding Top: </a>
-        <v-text-field
-          v-model="options['padding-top']"
-          :style="{ 'padding-top': options['padding-top'] }"
-        />
-      </div>
-      <div class="flex-1-1">
-        <a>Padding Bottom: </a>
-        <v-text-field
-          v-model="options['padding-bottom']"
-          :style="{ 'padding-bottom': options['padding-bottom'] }"
-        />
-      </div>
-      <div class="flex-1-1">
-        <a>Text Color: </a>
-        <v-color-picker
-          v-model="options['text-color']"
-          :style="{ 'color': options['text-color'] }"
-        />
-      </div>
-      <div class="flex-1-1">
-        <a>Primary Color: </a>
-        <v-text-field
-          v-model="options['primary-color']"
-          :style="{ 'background-color': options['primary-color'] }"
-        />
-      </div>
-      <div class="flex-1-1">
-        <button type="submit">Save</button>
-      </div>
-    </div>
-  </form>
 </template>
 
-<style>
-
-</style>
+<style></style>
 
 <script>
 import initCvData from "@/config/initCvData";
