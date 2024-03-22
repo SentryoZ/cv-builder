@@ -1,7 +1,7 @@
 export default {
   "options": {
-    "padding-top": "10px",
-    "padding-bottom": "10px",
+    "x": "10px",
+    "y": "10px",
     "primary-color": "#ffffff",
     "text-color": "#000000"
   },
