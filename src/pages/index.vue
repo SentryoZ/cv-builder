@@ -1,37 +1,42 @@
 <template>
   <div>
     <div class="d-flex">
-      <v-form @submit.prevent="saveCvData(cvData)">
-        <div class="d-flex flex-column">
-          <div class="flex-1-1">
-            <a>Padding Top: </a>
-            <v-text-field v-model="paddingTop" suffix="px" />
-          </div>
-          <div class="flex-1-1">
-            <a>Padding Bottom: </a>
-            <v-text-field v-model="paddingBottom" suffix="px"></v-text-field>
-          </div>
-          <div class="flex-1-1">
-            <a>Text Color: </a>
-            <v-color-picker
-              hide-canvas
-              hide-inputs
-              v-model="cvData.options['text-color']"
-            />
-          </div>
-          <div class="flex-1-1">
-            <a>Primary Color: </a>
-            <v-color-picker
-              hide-canvas
-              hide-inputs
-              v-model="cvData.options['primary-color']"
-            />
-          </div>
-          <div class="flex-1-1">
-            <v-button type="submit">Save</v-button>
-          </div>
+      <div class="d-flex flex-column">
+        <div class="flex-1-1">
+          <a>Padding Top: </a>
+          <v-text-field
+            v-model="paddingTop"
+            suffix="px"
+            @change="saveCvData(cvData)"
+          />
         </div>
-      </v-form>
+        <div class="flex-1-1">
+          <a>Padding Bottom: </a>
+          <v-text-field
+            v-model="paddingBottom"
+            suffix="px"
+            @change="saveCvData(cvData)"
+          ></v-text-field>
+        </div>
+        <div class="flex-1-1">
+          <a>Text Color: </a>
+          <v-color-picker
+            hide-canvas
+            hide-inputs
+            v-model="cvData.options['text-color']"
+            @change="saveCvData(cvData)"
+          />
+        </div>
+        <div class="flex-1-1">
+          <a>Primary Color: </a>
+          <v-color-picker
+            hide-canvas
+            hide-inputs
+            v-model="cvData.options['primary-color']"
+            @change="saveCvData(cvData)"
+          />
+        </div>
+      </div>
       <div class="flex-1-1">Input component</div>
       <div class="flex-1-1">
         <pre> {{ debugData }}</pre>
