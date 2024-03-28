@@ -53,9 +53,6 @@ export default {
       const previewContainer = document.getElementById('preview-container')
       const resumeContainer = document.getElementById('resume-container');
 
-      console.log(newWidth)
-      console.log(scale)
-
       previewContainer.style.width = newWidth + 'px';
       resumeContainer.style.transform = `scale(${scale})`; // Using transform scale for better scaling
     }
