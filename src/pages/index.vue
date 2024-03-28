@@ -3,43 +3,46 @@
     <v-container>
       <div class="v-row">
         <div class="v-col-8">
-          <v-form @submit.prevent="saveResumeData(resumeData)">
-            <div class="d-flex flex-column">
-              <div class="flex-1-1">
-                <a>Padding Top: </a>
-                <v-text-field v-model="paddingTop" suffix="px"/>
-              </div>
-              <div class="flex-1-1">
-                <a>Padding Bottom: </a>
-                <v-text-field v-model="paddingBottom" suffix="px"></v-text-field>
-              </div>
-              <div class="flex-1-1">
-                <a>Text Color: </a>
-                <v-color-picker
-                  hide-canvas
-                  hide-inputs
-                  v-model="resumeData.options['text-color']"
-                />
-              </div>
-              <div class="flex-1-1">
-                <a>Primary Color: </a>
-                <v-color-picker
-                  hide-canvas
-                  hide-inputs
-                  v-model="resumeData.options['primary-color']"
-                />
-              </div>
-              <div class="flex-1-1">
-                <v-btn type="submit">Save</v-btn>
-              </div>
+          <div class="d-flex flex-column">
+            <div class="flex-1-1">
+              <a>Padding Top: </a>
+              <v-text-field
+                v-model="paddingTop"
+                suffix="px"
+                @change="saveResumeData(resumeData)"
+              />
             </div>
-          </v-form>
+            <div class="flex-1-1">
+              <a>Padding Bottom: </a>
+              <v-text-field
+                v-model="paddingBottom"
+                suffix="px"
+                @change="saveResumeData(resumeData)"
+              />
+            </div>
+            <div class="flex-1-1">
+              <a>Text Color: </a>
+              <v-color-picker
+                hide-canvas
+                hide-inputs
+                v-model="resumeData.options['text-color']"
+                @change="saveResumeData(resumeData)"
+              />
+            </div>
+            <div class="flex-1-1">
+              <a>Primary Color: </a>
+              <v-color-picker
+                hide-canvas
+                hide-inputs
+                v-model="resumeData.options['primary-color']"
+                @change="saveResumeData(resumeData)"
+              />
+            </div>
+          </div>
         </div>
-        <!--      <v-col>-->
-        <!--      <v-row>-->
-        <!--        <pre> {{ debugData }}</pre>-->
-        <!--      </v-row>-->
-        <!--      </v-col>-->
+        <!--        <div class="flex-1-1">-->
+        <!--          <pre> {{ debugData }}</pre>-->
+        <!--        </div>-->
         <div class="v-col-4">
           <preview-resume></preview-resume>
         </div>
