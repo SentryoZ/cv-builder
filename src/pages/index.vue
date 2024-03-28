@@ -40,7 +40,7 @@
         <!--        <pre> {{ debugData }}</pre>-->
         <!--      </v-row>-->
         <!--      </v-col>-->
-        <div class="v-col-3 align-content-start">
+        <div class="v-col-4">
           <preview-resume></preview-resume>
         </div>
       </div>

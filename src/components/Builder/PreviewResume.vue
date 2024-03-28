@@ -4,10 +4,12 @@
 
 <template>
   <div>
-    <div class="preview-container">
-      <div class="resume-container ml-0 d-inline" id="resume-container">
-        <div class="resume" id="resume" style="scale: 1">
-
+    <div class="preview-container" id="preview-container">
+      <div class="resume-container align-content-start" id="resume-container">
+        <div class="resume" :style="{'padding': this.resumeData.options.x + ' ' + this.resumeData.options.y}">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque est explicabo harum officiis sed temporibus
+          voluptates. Blanditiis illum nisi odio quis voluptas! Cupiditate delectus dolorem eos eum illo laboriosam
+          necessitatibus!
         </div>
       </div>
     </div>
@@ -20,28 +22,42 @@
   width: 816px;
   box-sizing: border-box;
   background: white;
-  transform: translateX(100%);
+  color: black;
+}
+
+.resume-container {
+  transform-origin: left top;
 }
 </style>
 
 <script>
 export default {
   name: 'PreviewResume',
-
+  data() {
+    return {
+      resumeData: {
+        options: {
+          x: '10px',
+          y: '20px'
+        }
+      }
+    }
+  },
   methods: {
     resizePreviewContainers() {
       const defaultWidth = 1920;
       const bodyWidth = document.documentElement.clientWidth; // Using documentElement.clientWidth for better accuracy
       const scale = bodyWidth / defaultWidth - 0.2; // Calculating scale factor inversely
       const newWidth = 816 * scale; // Adjusting the width based on the scale
-      console.log('Scale:', scale, 'New Width:', newWidth);
 
+      const previewContainer = document.getElementById('preview-container')
       const resumeContainer = document.getElementById('resume-container');
-      const resume = document.getElementById('resume');
-      console.log('Resume Container:', resumeContainer, 'Resume:', resume);
 
-      resumeContainer.style.width = newWidth + 'px';
-      resume.style.transform = `scale(${scale})`; // Using transform scale for better scaling
+      console.log(newWidth)
+      console.log(scale)
+
+      previewContainer.style.width = newWidth + 'px';
+      resumeContainer.style.transform = `scale(${scale})`; // Using transform scale for better scaling
     }
 
 
