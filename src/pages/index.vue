@@ -2,14 +2,14 @@
   <div>
     <v-container>
       <div class="v-row">
-        <div class="d-flex">
+        <div class="v-col-8">
           <div class="d-flex flex-column">
             <div class="flex-1-1">
               <a>Padding Top: </a>
               <v-text-field
                 v-model="paddingTop"
                 suffix="px"
-                @change="saveCvData(cvData)"
+                @change="saveResumeData(resumeData)"
               />
             </div>
             <div class="flex-1-1">
@@ -17,7 +17,7 @@
               <v-text-field
                 v-model="paddingBottom"
                 suffix="px"
-                @change="saveCvData(cvData)"
+                @change="saveResumeData(resumeData)"
               />
             </div>
             <div class="flex-1-1">
@@ -25,8 +25,8 @@
               <v-color-picker
                 hide-canvas
                 hide-inputs
-                v-model="cvData.options['text-color']"
-                @change="saveCvData(cvData)"
+                v-model="resumeData.options['text-color']"
+                @change="saveResumeData(resumeData)"
               />
             </div>
             <div class="flex-1-1">
@@ -34,20 +34,20 @@
               <v-color-picker
                 hide-canvas
                 hide-inputs
-                v-model="cvData.options['primary-color']"
-                @change="saveCvData(cvData)"
+                v-model="resumeData.options['primary-color']"
+                @change="saveResumeData(resumeData)"
               />
             </div>
           </div>
         </div>
-        <div class="flex-1-1">Input component</div>
-        <div class="flex-1-1">
-          <pre> {{ debugData }}</pre>
-        </div>
+        <!--        <div class="flex-1-1">-->
+        <!--          <pre> {{ debugData }}</pre>-->
+        <!--        </div>-->
         <div class="v-col-4">
           <preview-resume></preview-resume>
         </div>
       </div>
+    </v-container>
   </div>
 </template>
 
