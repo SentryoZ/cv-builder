@@ -2,29 +2,33 @@
   <div>
     <v-container>
       <div class="v-row">
-        <div class="v-col-8">
+        <div class="v-col-6">
           <div class="d-flex flex-column">
             <div class="flex-1-1">
-              <a>Padding Top: </a>
+              <a>Padding X: </a>
               <v-text-field
+                type="number"
                 v-model="paddingTop"
                 suffix="px"
                 @change="saveResumeData(resumeData)"
               />
             </div>
             <div class="flex-1-1">
-              <a>Padding Bottom: </a>
+              <a>Padding Y: </a>
               <v-text-field
+                type="number"
                 v-model="paddingBottom"
                 suffix="px"
                 @change="saveResumeData(resumeData)"
               />
             </div>
             <div class="flex-1-1">
-              <a>Text Color: </a>
+              <label for="textColor">Text Color: </label>
               <v-color-picker
-                hide-canvas
+                class="colorPicker"
+                id="textColor"
                 hide-inputs
+                mode="hex"
                 v-model="resumeData.options['text-color']"
                 @change="saveResumeData(resumeData)"
               />
@@ -32,26 +36,34 @@
             <div class="flex-1-1">
               <a>Primary Color: </a>
               <v-color-picker
-                hide-canvas
                 hide-inputs
+                mode="hex"
                 v-model="resumeData.options['primary-color']"
                 @change="saveResumeData(resumeData)"
               />
             </div>
           </div>
         </div>
-        <!--        <div class="flex-1-1">-->
-        <!--          <pre> {{ debugData }}</pre>-->
-        <!--        </div>-->
         <div class="v-col-4">
-          <preview-resume></preview-resume>
+          <div class="v-row">
+            <v-switch
+              v-model="showDebug"
+              :label="`Show debug data: ${showDebug.toString()}`"
+              hide-details
+              inset
+            ></v-switch>
+            <pre v-if="showDebug"> {{ debugData }}</pre>
+            <preview-resume v-else :resume-data=resumeData></preview-resume>
+          </div>
         </div>
       </div>
     </v-container>
   </div>
 </template>
 
-<style></style>
+<style scoped>
+
+</style>
 
 <script>
 import initResumeData from "@/config/initResumeData";
@@ -63,6 +75,7 @@ export default {
   data() {
     return {
       resumeData: {},
+      showDebug: true
     };
   },
   methods: {
