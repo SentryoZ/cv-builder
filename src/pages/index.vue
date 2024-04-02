@@ -5,8 +5,8 @@
         <div class="v-col-6">
           <div class="d-flex flex-column">
             <div class="flex-1-1">
-              <a>Padding X: </a>
               <v-text-field
+                label="Padding X"
                 type="number"
                 v-model="paddingTop"
                 suffix="px"
@@ -14,33 +14,31 @@
               />
             </div>
             <div class="flex-1-1">
-              <a>Padding Y: </a>
               <v-text-field
+                label="Padding Y"
                 type="number"
                 v-model="paddingBottom"
                 suffix="px"
                 @change="saveResumeData(resumeData)"
               />
             </div>
-            <div class="flex-1-1">
-              <label for="textColor">Text Color: </label>
-              <v-color-picker
-                class="colorPicker"
-                id="textColor"
-                hide-inputs
-                mode="hex"
-                v-model="resumeData.options['text-color']"
-                @change="saveResumeData(resumeData)"
-              />
-            </div>
-            <div class="flex-1-1">
-              <a>Primary Color: </a>
-              <v-color-picker
-                hide-inputs
-                mode="hex"
-                v-model="resumeData.options['primary-color']"
-                @change="saveResumeData(resumeData)"
-              />
+            <div class="d-flex">
+              <div class="flex-1-1">
+                <v-text-field
+                  label="Text Color"
+                  type="color"
+                  v-model="resumeData.options['text-color']"
+                  @change="saveResumeData(resumeData)"
+                />
+              </div>
+              <div class="flex-1-1">
+                <v-text-field
+                  label="Background Color"
+                  type="color"
+                  v-model="resumeData.options['primary-color']"
+                  @change="saveResumeData(resumeData)"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -53,7 +51,7 @@
               inset
             ></v-switch>
             <pre v-if="showDebug"> {{ debugData }}</pre>
-            <preview-resume v-else :resume-data=resumeData></preview-resume>
+            <preview-resume v-else :resume-data=resumeData :key=updateKey></preview-resume>
           </div>
         </div>
       </div>
@@ -75,13 +73,15 @@ export default {
   data() {
     return {
       resumeData: {},
-      showDebug: true
+      showDebug: true,
+      updateKey: 0,
     };
   },
   methods: {
     // save resume data to local storage
     saveResumeData(data) {
       localStorage.setItem("resume_data", JSON.stringify(data));
+      this.updateKey++
       return data;
     },
   },
