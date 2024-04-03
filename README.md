@@ -2,4 +2,10 @@
 - [x] Đổi cách save(Từ save button thành check onchange)
 - [ ] Gom options thành components
 - [x] Dựng khung preview
-- [ ] Dựng khung input sections
+- [x] Dựng khung input sections
+- [ ] Lưu vào resumeData chính khi thay đổi input
+- [ ] Thêm validate cho input
+- [ ] Thêm button để insert input
+- [ ] Thêm draggable vào sections
+- [ ] Parse data vào preview
+- [ ] Export resume ra pdf hoặc in
