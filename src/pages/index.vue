@@ -5,8 +5,8 @@
         <div class="v-col-6">
           <div class="d-flex flex-column">
             <div class="flex-1-1">
-              <a>Padding X: </a>
               <v-text-field
+                label="Padding X"
                 type="number"
                 v-model="paddingTop"
                 suffix="px"
@@ -14,33 +14,36 @@
               />
             </div>
             <div class="flex-1-1">
-              <a>Padding Y: </a>
               <v-text-field
+                label="Padding Y"
                 type="number"
                 v-model="paddingBottom"
                 suffix="px"
                 @change="saveResumeData(resumeData)"
               />
             </div>
-            <div class="flex-1-1">
-              <label for="textColor">Text Color: </label>
-              <v-color-picker
-                class="colorPicker"
-                id="textColor"
-                hide-inputs
-                mode="hex"
-                v-model="resumeData.options['text-color']"
-                @change="saveResumeData(resumeData)"
-              />
+            <div class="d-flex">
+              <div class="flex-1-1">
+                <v-text-field
+                  label="Text Color"
+                  type="color"
+                  v-model="resumeData.options['text-color']"
+                  @change="saveResumeData(resumeData)"
+                />
+              </div>
+              <div class="flex-1-1">
+                <v-text-field
+                  label="Background Color"
+                  type="color"
+                  v-model="resumeData.options['primary-color']"
+                  @change="saveResumeData(resumeData)"
+                />
+              </div>
             </div>
-            <div class="flex-1-1">
-              <a>Primary Color: </a>
-              <v-color-picker
-                hide-inputs
-                mode="hex"
-                v-model="resumeData.options['primary-color']"
-                @change="saveResumeData(resumeData)"
-              />
+          </div>
+          <div class="d-flex flex-column">
+            <div v-for="(section, index) in resumeData.sections" :key=index>
+              <BlockField :block=section :level=0></BlockField>
             </div>
           </div>
         </div>
@@ -68,22 +71,16 @@
 <script>
 import initResumeData from "@/config/initResumeData";
 import PreviewResume from "@/components/Builder/PreviewResume.vue";
+import BlockField from "@/components/Builder/InputFields/BlockField.vue";
 
 export default {
   name: "resumeBuilder",
-  components: {PreviewResume},
+  components: {BlockField, PreviewResume},
   data() {
     return {
       resumeData: {},
       showDebug: true
     };
-  },
-  methods: {
-    // save resume data to local storage
-    saveResumeData(data) {
-      localStorage.setItem("resume_data", JSON.stringify(data));
-      return data;
-    },
   },
   created() {
     let resumeData = [];
@@ -126,6 +123,14 @@ export default {
   },
   mounted() {
   },
+  methods: {
+    // save resume data to local storage
+    saveResumeData(data) {
+      localStorage.setItem("resume_data", JSON.stringify(data));
+      this.updateKey++
+      return data;
+    },
+  },
   computed: {
     paddingTop: {
       // get x value
@@ -151,5 +156,10 @@ export default {
       return JSON.stringify(this.resumeData, null, 2);
     },
   },
+  watch: {
+    resumeData: function () {
+      console.log('abc')
+    }
+  }
 };
 </script>
