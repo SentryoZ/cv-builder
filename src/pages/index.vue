@@ -56,7 +56,7 @@
               inset
             ></v-switch>
             <pre v-if="showDebug"> {{ debugData }}</pre>
-            <preview-resume v-else :resume-data=resumeData></preview-resume>
+            <preview-resume v-else :resume-data=resumeData :key=updateKey></preview-resume>
           </div>
         </div>
       </div>
@@ -79,7 +79,8 @@ export default {
   data() {
     return {
       resumeData: {},
-      showDebug: true
+      showDebug: true,
+      updateKey: 0,
     };
   },
   created() {
@@ -156,10 +157,5 @@ export default {
       return JSON.stringify(this.resumeData, null, 2);
     },
   },
-  watch: {
-    resumeData: function () {
-      console.log('abc')
-    }
-  }
 };
 </script>
