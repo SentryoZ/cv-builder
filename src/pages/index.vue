@@ -41,6 +41,11 @@
               </div>
             </div>
           </div>
+          <div class="d-flex flex-column">
+            <div v-for="(section, index) in resumeData.sections" :key=index>
+              <BlockField :block=section :level=0></BlockField>
+            </div>
+          </div>
         </div>
         <div class="v-col-4">
           <div class="v-row">
@@ -66,24 +71,17 @@
 <script>
 import initResumeData from "@/config/initResumeData";
 import PreviewResume from "@/components/Builder/PreviewResume.vue";
+import BlockField from "@/components/Builder/InputFields/BlockField.vue";
 
 export default {
   name: "resumeBuilder",
-  components: {PreviewResume},
+  components: {BlockField, PreviewResume},
   data() {
     return {
       resumeData: {},
       showDebug: true,
       updateKey: 0,
     };
-  },
-  methods: {
-    // save resume data to local storage
-    saveResumeData(data) {
-      localStorage.setItem("resume_data", JSON.stringify(data));
-      this.updateKey++
-      return data;
-    },
   },
   created() {
     let resumeData = [];
@@ -125,6 +123,14 @@ export default {
     this.resumeData = resumeData;
   },
   mounted() {
+  },
+  methods: {
+    // save resume data to local storage
+    saveResumeData(data) {
+      localStorage.setItem("resume_data", JSON.stringify(data));
+      this.updateKey++
+      return data;
+    },
   },
   computed: {
     paddingTop: {
