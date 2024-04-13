@@ -35,6 +35,8 @@ export default {
   created() {
     console.log(this.content)
     this.inputData = this.content
-  }
+  },
+  methods: {
+    }
 }
 </script>

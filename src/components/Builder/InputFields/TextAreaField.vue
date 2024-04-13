@@ -8,6 +8,7 @@
       :model-value=inputData.value
       :name=inputData.name
       :label=inputData.name
+      @input="updateTextInput($event)"
     ></v-textarea>
   </div>
 </template>
@@ -31,6 +32,12 @@ export default {
   },
   created() {
     this.inputData = this.content
+  },
+  methods: {
+    updateTextInput(event) {
+      this.inputData.value = event.target.value;
+      this.$emit('updateInput', this.inputData );
+    },
   }
 }
 </script>

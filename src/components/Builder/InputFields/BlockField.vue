@@ -9,8 +9,8 @@ import RangeField from "@/components/Builder/InputFields/RangeField.vue";
     <div>{{ block.name }}</div>
     <div v-for="(content, index) in block.contents" :key=index>
       <BlockField v-if="content.type === 'block'" :block=content :level=level+1></BlockField>
-      <TextField v-else-if="content.type === 'text'" :content=content></TextField>
-      <TextAreaField v-else-if="content.type === 'textarea'" :content=content></TextAreaField>
+      <TextField v-else-if="content.type === 'text'" :content=content @updateInput="updateInputdata"></TextField>
+      <TextAreaField v-else-if="content.type === 'textarea'" :content=content @updateInput="updateInputdata"></TextAreaField>
       <TextField v-else-if="content.type === 'image'" :content=content></TextField>
       <RangeField v-else-if="content.type === 'range'" :content=content></RangeField>
     </div>
@@ -48,8 +48,12 @@ export default {
     },
     handleBlockMargin() {
       this.marginLevel = (this.level * 10) + 'px'
-    }
+    },
+    updateInputdata(data) {
+      console.log(data)
+      this.$emit('updatetextInput', data);
   }
+}
 }
 
 </script>

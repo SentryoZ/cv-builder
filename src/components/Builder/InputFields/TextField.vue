@@ -8,6 +8,7 @@
       :model=inputData.value
       :name=inputData.name
       :label=inputData.name
+      @input="updateTextInput($event)"
     ></v-text-field>
   </div>
 </template>
@@ -24,13 +25,19 @@ export default {
   data() {
     return {
       inputData: {
-        value: null,
-        name: null
+        value: this.content.value || null,
+        name: this.content.name || null
       }
     }
   },
   created() {
     this.inputData = this.content
+  },
+  methods: {
+    updateTextInput(event) {
+      this.inputData.value = event.target.value;
+      this.$emit('updateInput', this.inputData );
+    }
   }
 }
 </script>
