@@ -8,7 +8,8 @@
       :model=inputData.value
       :name=inputData.name
       :label=inputData.name
-      @input="updateTextInput($event)"
+      @change="updateTextInput($event)"
+      v-bind="$attrs"
     ></v-text-field>
   </div>
 </template>
@@ -20,13 +21,14 @@
 <script>
 export default {
   props: {
-    content: JSON
+    content: JSON,
+    index: Number
   },
   data() {
     return {
       inputData: {
         value: this.content.value || null,
-        name: this.content.name || null
+        name: this.content.name || null,
       }
     }
   },
@@ -36,7 +38,7 @@ export default {
   methods: {
     updateTextInput(event) {
       this.inputData.value = event.target.value;
-      this.$emit('updateInput', this.inputData );
+      this.$emit('updateInputData', {value: this.inputData, id: this.index} );
     }
   }
 }

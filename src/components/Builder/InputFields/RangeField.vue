@@ -11,6 +11,7 @@
       type="number"
       min="0"
       max="100"
+      @change="updateTextInput($event)"
     ></v-text-field>
   </div>
 </template>
@@ -22,7 +23,8 @@
 <script>
 export default {
   props: {
-    content: JSON
+    content: JSON,
+    index: Number
   },
   data() {
     return {
@@ -37,6 +39,10 @@ export default {
     this.inputData = this.content
   },
   methods: {
+    updateTextInput(event) {
+      this.inputData.value = event.target.value;
+      this.$emit('updateInputData', {value: this.inputData, id: this.index} );
     }
+  }
 }
 </script>
