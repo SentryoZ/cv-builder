@@ -8,6 +8,7 @@
       :model-value=inputData.value
       :name=inputData.name
       :label=inputData.name
+      @change="updateTextInput($event)"
     ></v-textarea>
   </div>
 </template>
@@ -19,7 +20,8 @@
 <script>
 export default {
   props: {
-    content: JSON
+    content: JSON,
+    index: Number
   },
   data() {
     return {
@@ -31,6 +33,12 @@ export default {
   },
   created() {
     this.inputData = this.content
+  },
+  methods: {
+    updateTextInput(event) {
+      this.inputData.value = event.target.value;
+      this.$emit('updateInputData', {value: this.inputData, id: this.index} );
+    }
   }
 }
 </script>

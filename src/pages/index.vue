@@ -6,7 +6,7 @@
           <OptionsField :resumeData="resumeData" @save="saveResumeData" />
           <div class="d-flex flex-column">
             <div v-for="(section, index) in resumeData.sections" :key="index">
-              <BlockField :block="section" :level="0"></BlockField>
+              <BlockField :block="section" :level="0" @updatetextInput="saveResumeData"></BlockField>
             </div>
           </div>
         </div>
@@ -84,6 +84,7 @@ export default {
     // save resume data to local storage
     saveResumeData(data) {
       this.resumeData = data;
+
       localStorage.setItem("resume_data", JSON.stringify(data));
       this.updateKey++;
       return data;
