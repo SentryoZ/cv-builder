@@ -35,13 +35,12 @@ export default {
     }
   },
   created() {
-    console.log(this.content)
     this.inputData = this.content
   },
   methods: {
     updateTextInput(event) {
       this.inputData.value = event.target.value;
-      this.$emit('updateInputData', {value: this.inputData, id: this.index} );
+      this.$emit('updateInputData', {value: this.inputData, index: this.index} );
     }
   }
 }

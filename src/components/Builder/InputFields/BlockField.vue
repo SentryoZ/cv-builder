@@ -34,7 +34,8 @@ export default {
     level: {
       type: Number,
       default: 0
-    }
+    },
+    index: Number
   },
   data() {
     return {
@@ -57,8 +58,8 @@ export default {
     updateInputData(data) {
       let index = data.index
       this.blockData.contents[index] = data.value
-
-      this.$emit('updateInputData', this.blockData);
+      console.log("Child Level: " + this.level)
+      this.$emit('updateInputData', {value: this.blockData, index: this.index});
     }
   }
 }

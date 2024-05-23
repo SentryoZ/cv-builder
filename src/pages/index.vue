@@ -3,10 +3,10 @@
     <v-container>
       <div class="v-row">
         <div class="v-col-6">
-          <OptionsField :resumeData="resumeData" @save="saveResumeData" />
+          <OptionsField :resumeData="resumeData" @save="saveResumeData"/>
           <div class="d-flex flex-column">
             <div v-for="(section, index) in resumeData.sections" :key="index">
-              <BlockField :block="section" :level="0" @updatetextInput="saveResumeData"></BlockField>
+              <BlockField :block="section" :level="0" :index="index" @updateInputData="updateInputData"></BlockField>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ import OptionsField from "@/components/Builder/OptionsField.vue";
 
 export default {
   name: "resumeBuilder",
-  components: { BlockField, PreviewResume, OptionsField },
+  components: {BlockField, PreviewResume, OptionsField},
   data() {
     return {
       resumeData: {},
@@ -79,7 +79,8 @@ export default {
 
     this.resumeData = resumeData;
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     // save resume data to local storage
     saveResumeData(data) {
@@ -89,6 +90,10 @@ export default {
       this.updateKey++;
       return data;
     },
+    updateInputData(data) {
+      console.log(data)
+      console.log("outer level")
+    }
   },
   computed: {
     debugData() {

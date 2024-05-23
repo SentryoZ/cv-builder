@@ -37,7 +37,7 @@ export default {
   methods: {
     updateTextInput(event) {
       this.inputData.value = event.target.value;
-      this.$emit('updateInputData', {value: this.inputData, id: this.index} );
+      this.$emit('updateInputData', {value: this.inputData, index: this.index} );
     }
   }
 }
